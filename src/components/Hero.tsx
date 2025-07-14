@@ -3,9 +3,9 @@ import { Phone, ArrowRight, Sparkles } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-br from-muted to-background" />
       <div className="absolute top-20 right-20 w-64 h-64 bg-primary-glow rounded-full blur-3xl opacity-30 animate-pulse" />
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
@@ -26,16 +26,16 @@ const Hero = () => {
           
           {/* Value proposition */}
           <div className="flex flex-wrap justify-center gap-6 mb-10 text-sm md:text-base">
-            <div className="flex items-center text-success">
-              <span className="w-2 h-2 bg-success rounded-full mr-2"></span>
+            <div className="flex items-center text-foreground">
+              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
               100% Eco-Friendly Products
             </div>
-            <div className="flex items-center text-success">
-              <span className="w-2 h-2 bg-success rounded-full mr-2"></span>
+            <div className="flex items-center text-foreground">
+              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
               Trusted & Insured
             </div>
-            <div className="flex items-center text-success">
-              <span className="w-2 h-2 bg-success rounded-full mr-2"></span>
+            <div className="flex items-center text-foreground">
+              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
               Satisfaction Guaranteed
             </div>
           </div>
