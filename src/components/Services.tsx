@@ -145,6 +145,7 @@ const Services = () => {
                 <Button 
                   className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" 
                   variant="outline"
+                  onClick={() => window.location.href = '/booking'}
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Get Quote

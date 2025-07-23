@@ -49,9 +49,12 @@ const Header = () => {
           
           {/* CTA Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <Button variant="success" size="sm" className="hidden sm:flex">
+            <Button variant="success" size="sm" className="hidden lg:flex">
               <Phone className="h-4 w-4 mr-2" />
               (555) 123-CLEAN
+            </Button>
+            <Button variant="hero" size="sm" onClick={() => window.location.href = '/booking'}>
+              Book Now
             </Button>
             
             {/* Mobile menu button */}
