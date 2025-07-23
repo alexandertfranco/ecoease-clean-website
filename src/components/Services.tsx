@@ -9,7 +9,7 @@ const services = [
     title: "Residential Cleaning",
     description: "Complete home cleaning with eco-friendly products. Perfect for busy families and professionals who want a spotless home.",
     features: ["Kitchen & Bathrooms", "Dusting & Vacuuming", "Window Cleaning", "Floor Care", "Laundry Folding", "Dishwashing"],
-    pricing: "Starting at $80",
+    pricing: "As low as $120",
     duration: "2-4 hours",
     popular: false,
     category: "Home"
@@ -19,7 +19,7 @@ const services = [
     title: "Commercial Cleaning",
     description: "Professional office and business cleaning services to maintain a healthy, productive work environment for your team.",
     features: ["Office Spaces", "Retail Stores", "Medical Facilities", "Post-Construction", "Sanitization", "Trash Removal"],
-    pricing: "Starting at $120",
+    pricing: "As low as $170",
     duration: "3-6 hours",
     popular: true,
     category: "Business"
@@ -29,7 +29,7 @@ const services = [
     title: "Deep Cleaning",
     description: "Intensive, thorough cleaning service for homes that need extra attention, seasonal maintenance, or special occasions.",
     features: ["Detailed Sanitization", "Appliance Cleaning", "Baseboard & Trim", "Light Fixtures", "Cabinet Interiors", "Oven & Fridge"],
-    pricing: "Starting at $150",
+    pricing: "As low as $250",
     duration: "4-8 hours",
     popular: true,
     category: "Premium"
