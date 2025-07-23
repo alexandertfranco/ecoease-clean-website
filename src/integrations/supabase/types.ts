@@ -14,7 +14,141 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          add_ons: string[] | null
+          address: string
+          bathrooms: number
+          city: string
+          created_at: string
+          frequency: string
+          id: string
+          payment_type: string
+          rooms: number
+          scheduled_date: string
+          scheduled_time: string
+          service_type: string
+          state: string
+          status: string
+          stripe_session_id: string | null
+          stripe_subscription_id: string | null
+          total_price: number
+          updated_at: string
+          user_id: string | null
+          zip_code: string
+        }
+        Insert: {
+          add_ons?: string[] | null
+          address: string
+          bathrooms: number
+          city: string
+          created_at?: string
+          frequency: string
+          id?: string
+          payment_type: string
+          rooms: number
+          scheduled_date: string
+          scheduled_time: string
+          service_type: string
+          state: string
+          status?: string
+          stripe_session_id?: string | null
+          stripe_subscription_id?: string | null
+          total_price: number
+          updated_at?: string
+          user_id?: string | null
+          zip_code: string
+        }
+        Update: {
+          add_ons?: string[] | null
+          address?: string
+          bathrooms?: number
+          city?: string
+          created_at?: string
+          frequency?: string
+          id?: string
+          payment_type?: string
+          rooms?: number
+          scheduled_date?: string
+          scheduled_time?: string
+          service_type?: string
+          state?: string
+          status?: string
+          stripe_session_id?: string | null
+          stripe_subscription_id?: string | null
+          total_price?: number
+          updated_at?: string
+          user_id?: string | null
+          zip_code?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          stripe_customer_id: string | null
+          subscribed: boolean
+          subscription_end: string | null
+          subscription_tier: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
