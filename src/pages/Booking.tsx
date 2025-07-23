@@ -500,7 +500,7 @@ const Booking = () => {
             <div className="lg:col-span-2">
               {/* Progress Steps */}
               <div className="mb-8">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 max-w-md mx-auto">
                   {Array.from({length: totalSteps}, (_, i) => (
                     <div key={i} className="flex items-center">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
@@ -511,7 +511,7 @@ const Booking = () => {
                         {i + 1}
                       </div>
                       {i < totalSteps - 1 && (
-                        <div className={`w-full h-1 mx-2 ${step > i + 1 ? 'bg-primary' : 'bg-muted'}`} />
+                        <div className={`w-8 h-1 mx-1 ${step > i + 1 ? 'bg-primary' : 'bg-muted'}`} />
                       )}
                     </div>
                   ))}
