@@ -42,7 +42,7 @@ const Hero = () => {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" className="group">
+            <Button variant="hero" size="lg" className="group" onClick={() => window.location.href = '/booking'}>
               <Phone className="h-5 w-5 mr-2" />
               Get Free Quote
               <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
