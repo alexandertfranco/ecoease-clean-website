@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -126,6 +128,8 @@ const addOnOptions = [
 ];
 
 const Booking = () => {
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [booking, setBooking] = useState<BookingState>({
     bedrooms: 1,
@@ -138,6 +142,27 @@ const Booking = () => {
     zipCode: "",
     addOns: []
   });
+
+  // Redirect to auth if not logged in
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate('/auth');
+    }
+  }, [user, loading, navigate]);
+
+  // Auto-fill contact info from user data
+  useEffect(() => {
+    if (user && !booking.contact.email) {
+      setBooking(prev => ({
+        ...prev,
+        contact: {
+          ...prev.contact,
+          email: user.email || '',
+          name: user.user_metadata?.full_name || ''
+        }
+      }));
+    }
+  }, [user, booking.contact.email]);
 
   const totalSteps = 6;
   const selectedService = serviceTypes.find(s => s.id === booking.serviceType);
@@ -473,6 +498,23 @@ const Booking = () => {
     }
   };
 
+  // Show loading while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render anything while redirecting
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -485,7 +527,7 @@ const Booking = () => {
               </div>
               <span className="text-xl font-bold text-foreground">EcoEase Cleaning</span>
             </div>
-            <Button variant="ghost" onClick={() => window.location.href = '/'}>
+            <Button variant="ghost" onClick={() => navigate('/')}>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Home
             </Button>

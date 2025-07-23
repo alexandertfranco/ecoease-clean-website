@@ -1,9 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -53,9 +64,35 @@ const Header = () => {
               <Phone className="h-4 w-4 mr-2" />
               (555) 123-CLEAN
             </Button>
-            <Button variant="hero" size="sm" onClick={() => window.location.href = '/booking'}>
+            <Button variant="hero" size="sm" onClick={() => navigate('/booking')}>
               Book Now
             </Button>
+            
+            {/* Auth Section */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="hidden md:flex">
+                    <User className="h-4 w-4 mr-2" />
+                    {user.user_metadata?.full_name || user.email}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => navigate('/booking')}>
+                    My Bookings
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={signOut}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" size="sm" onClick={() => navigate('/auth')} className="hidden md:flex">
+                Sign In
+              </Button>
+            )}
             
             {/* Mobile menu button */}
             <button
@@ -93,6 +130,16 @@ const Header = () => {
                 <Phone className="h-4 w-4 mr-2" />
                 (555) 123-CLEAN
               </Button>
+              {user ? (
+                <Button variant="ghost" size="sm" onClick={signOut} className="w-fit">
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </Button>
+              ) : (
+                <Button variant="outline" size="sm" onClick={() => navigate('/auth')} className="w-fit">
+                  Sign In
+                </Button>
+              )}
             </div>
           </div>
         )}
