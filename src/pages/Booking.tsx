@@ -18,6 +18,7 @@ interface BookingState {
     email: string;
     phone: string;
   };
+  zipCode: string;
 }
 
 const serviceTypes = [
@@ -57,7 +58,8 @@ const Booking = () => {
     frequency: "one-time",
     date: "",
     address: "",
-    contact: { name: "", email: "", phone: "" }
+    contact: { name: "", email: "", phone: "" },
+    zipCode: ""
   });
 
   const totalSteps = 5;
@@ -212,10 +214,23 @@ const Booking = () => {
             <h2 className="text-2xl font-bold text-foreground mb-6">Where should we clean?</h2>
             <div className="space-y-4">
               <div>
+                <Label htmlFor="zipCode">Zip Code</Label>
+                <Input
+                  id="zipCode"
+                  placeholder="12345"
+                  value={booking.zipCode}
+                  onChange={(e) => setBooking({...booking, zipCode: e.target.value})}
+                  maxLength={5}
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  We'll verify this is within our service area
+                </p>
+              </div>
+              <div>
                 <Label htmlFor="address">Full Address</Label>
                 <Input
                   id="address"
-                  placeholder="123 Main St, City, State 12345"
+                  placeholder="123 Main St, City, State"
                   value={booking.address}
                   onChange={(e) => setBooking({...booking, address: e.target.value})}
                 />
