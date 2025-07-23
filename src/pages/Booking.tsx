@@ -19,6 +19,7 @@ interface BookingState {
     phone: string;
   };
   zipCode: string;
+  addOns: string[];
 }
 
 const serviceTypes = [
@@ -49,6 +50,81 @@ const serviceTypes = [
   }
 ];
 
+const addOnOptions = [
+  {
+    id: "inside-fridge",
+    name: "Inside Fridge (empty)",
+    price: 30,
+    description: "Deep clean inside of refrigerator"
+  },
+  {
+    id: "inside-oven", 
+    name: "Inside Oven",
+    price: 30,
+    description: "Clean inside of oven and racks"
+  },
+  {
+    id: "inside-microwave",
+    name: "Inside Microwave", 
+    price: 20,
+    description: "Clean inside of microwave"
+  },
+  {
+    id: "kitchen-cabinets",
+    name: "Inside Kitchen Cabinets (empty)",
+    price: 30,
+    description: "Wipe down inside of empty cabinets"
+  },
+  {
+    id: "pets-hair",
+    name: "Pets/Pet Hair",
+    price: 30,
+    description: "Extra attention for pet hair removal"
+  },
+  {
+    id: "wash-dishes",
+    name: "Wash Dishes",
+    price: 25,
+    description: "Hand wash dishes and cookware"
+  },
+  {
+    id: "laundry",
+    name: "Wash Load of Laundry",
+    price: 30,
+    description: "Wash, dry, and fold one load"
+  },
+  {
+    id: "interior-windows",
+    name: "Clean Interior Windows",
+    price: 60,
+    description: "Clean all interior windows"
+  },
+  {
+    id: "window-blinds",
+    name: "Clean Window Blinds",
+    price: 30,
+    description: "Dust and wipe window blinds"
+  },
+  {
+    id: "baseboards",
+    name: "Wipe Down Baseboards",
+    price: 45,
+    description: "Clean all baseboards throughout home"
+  },
+  {
+    id: "basement",
+    name: "Clean Finished Basement",
+    price: 40,
+    description: "Clean finished basement area"
+  },
+  {
+    id: "organizing",
+    name: "Hour of Organizing",
+    price: 40,
+    description: "Professional organizing service per hour"
+  }
+];
+
 const Booking = () => {
   const [step, setStep] = useState(1);
   const [booking, setBooking] = useState<BookingState>({
@@ -59,14 +135,19 @@ const Booking = () => {
     date: "",
     address: "",
     contact: { name: "", email: "", phone: "" },
-    zipCode: ""
+    zipCode: "",
+    addOns: []
   });
 
-  const totalSteps = 5;
+  const totalSteps = 6;
   const selectedService = serviceTypes.find(s => s.id === booking.serviceType);
   const basePrice = selectedService?.price || 0;
   const roomMultiplier = (booking.bedrooms * 20) + (booking.bathrooms * 15);
-  const totalPrice = basePrice + roomMultiplier;
+  const addOnPrice = booking.addOns.reduce((total, addOnId) => {
+    const addOn = addOnOptions.find(a => a.id === addOnId);
+    return total + (addOn?.price || 0);
+  }, 0);
+  const totalPrice = basePrice + roomMultiplier + addOnPrice;
 
   const nextStep = () => {
     if (step < totalSteps) setStep(step + 1);
@@ -74,6 +155,15 @@ const Booking = () => {
 
   const prevStep = () => {
     if (step > 1) setStep(step - 1);
+  };
+
+  const toggleAddOn = (addOnId: string) => {
+    setBooking(prev => ({
+      ...prev,
+      addOns: prev.addOns.includes(addOnId)
+        ? prev.addOns.filter(id => id !== addOnId)
+        : [...prev.addOns, addOnId]
+    }));
   };
 
   const renderStep = () => {
@@ -162,6 +252,65 @@ const Booking = () => {
       case 2:
         return (
           <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Add-on Services</h2>
+            <p className="text-muted-foreground mb-6">
+              Select any additional services you'd like to include with your cleaning.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {addOnOptions.map(addOn => (
+                <Card 
+                  key={addOn.id}
+                  className={`cursor-pointer transition-all hover:shadow-md ${
+                    booking.addOns.includes(addOn.id) ? 'ring-2 ring-primary bg-primary/5' : ''
+                  }`}
+                  onClick={() => toggleAddOn(addOn.id)}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-sm">{addOn.name}</h3>
+                        <p className="text-xs text-muted-foreground mt-1">{addOn.description}</p>
+                      </div>
+                      <div className="text-right ml-3">
+                        <span className="font-semibold text-primary">+${addOn.price}</span>
+                        {booking.addOns.includes(addOn.id) && (
+                          <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center mt-1 ml-auto">
+                            <span className="text-primary-foreground text-xs">✓</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            {booking.addOns.length > 0 && (
+              <div className="bg-muted/50 p-4 rounded-lg">
+                <h4 className="font-semibold mb-2">Selected Add-ons:</h4>
+                <div className="space-y-1">
+                  {booking.addOns.map(addOnId => {
+                    const addOn = addOnOptions.find(a => a.id === addOnId);
+                    return addOn ? (
+                      <div key={addOnId} className="flex justify-between text-sm">
+                        <span>{addOn.name}</span>
+                        <span>+${addOn.price}</span>
+                      </div>
+                    ) : null;
+                  })}
+                </div>
+                <div className="border-t mt-2 pt-2 font-semibold text-sm">
+                  Add-ons Total: +${addOnPrice}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+
+      case 3:
+        return (
+          <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">How often do you need cleaning?</h2>
             <div className="grid gap-4">
               {[
@@ -192,7 +341,7 @@ const Booking = () => {
           </div>
         );
 
-      case 3:
+      case 4:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">When should we come?</h2>
@@ -208,7 +357,7 @@ const Booking = () => {
           </div>
         );
 
-      case 4:
+      case 5:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">Where should we clean?</h2>
@@ -267,7 +416,7 @@ const Booking = () => {
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">Review & Confirm</h2>
@@ -292,6 +441,20 @@ const Booking = () => {
                   <span>Date:</span>
                   <span>{new Date(booking.date).toLocaleDateString()}</span>
                 </div>
+                {booking.addOns.length > 0 && (
+                  <div className="space-y-1">
+                    <span className="font-medium">Add-ons:</span>
+                    {booking.addOns.map(addOnId => {
+                      const addOn = addOnOptions.find(a => a.id === addOnId);
+                      return addOn ? (
+                        <div key={addOnId} className="flex justify-between text-sm text-muted-foreground pl-2">
+                          <span>• {addOn.name}</span>
+                          <span>+${addOn.price}</span>
+                        </div>
+                      ) : null;
+                    })}
+                  </div>
+                )}
                 <div className="flex justify-between border-t pt-4 font-semibold">
                   <span>Total:</span>
                   <span>${totalPrice}</span>
@@ -393,7 +556,7 @@ const Booking = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
+                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span>Space:</span>
                       <span>{booking.bedrooms === 0 ? 'Studio' : `${booking.bedrooms}BR`}, {booking.bathrooms}BA</span>
@@ -406,6 +569,11 @@ const Booking = () => {
                       <span>Frequency:</span>
                       <span>{booking.frequency.replace('-', ' ')}</span>
                     </div>
+                    {booking.addOns.length > 0 && (
+                      <div className="text-sm">
+                        <span>Add-ons: {booking.addOns.length}</span>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="border-t pt-4">
