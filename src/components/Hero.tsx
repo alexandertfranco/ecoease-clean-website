@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, Sparkles } from "lucide-react";
-
 const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-muted to-background" />
       <div className="absolute top-20 right-20 w-64 h-64 bg-primary-glow rounded-full blur-3xl opacity-30 animate-pulse" />
@@ -20,9 +18,7 @@ const Hero = () => {
           </div>
           
           {/* Tagline */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
-            Professional eco-friendly cleaning services that care for your home and the environment
-          </p>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">Professional eco-friendly cleaning service that cares for your home and your family</p>
           
           {/* Value proposition */}
           <div className="flex flex-wrap justify-center gap-6 mb-10 text-sm md:text-base">
@@ -69,8 +65,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
