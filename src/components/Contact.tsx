@@ -74,65 +74,61 @@ const Contact = () => {
               </CardContent>
             </Card>
             
-            {/* Contact Information */}
-            <div className="space-y-8">
+            {/* Contact Information in 2x2 Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Call Us */}
               <Card className="border-0 shadow-card">
                 <CardContent className="p-6">
-                  <div className="flex items-start">
-                    <div className="p-3 bg-primary-glow rounded-lg mr-4">
+                  <div className="text-center">
+                    <div className="p-3 bg-primary-glow rounded-lg mx-auto mb-4 w-fit">
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">Call Us</h3>
-                      <p className="text-muted-foreground mb-1">(555) 123-CLEAN</p>
-                      <p className="text-sm text-muted-foreground">Available 7 days a week</p>
-                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Call Us</h3>
+                    <p className="text-muted-foreground mb-1">(555) 123-CLEAN</p>
+                    <p className="text-sm text-muted-foreground">Available 7 days a week</p>
                   </div>
                 </CardContent>
               </Card>
               
+              {/* Email Us */}
               <Card className="border-0 shadow-card">
                 <CardContent className="p-6">
-                  <div className="flex items-start">
-                    <div className="p-3 bg-primary-glow rounded-lg mr-4">
+                  <div className="text-center">
+                    <div className="p-3 bg-primary-glow rounded-lg mx-auto mb-4 w-fit">
                       <Mail className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">Email Us</h3>
-                      <p className="text-muted-foreground mb-1">hello@ecoeasecleaning.com</p>
-                      <p className="text-sm text-muted-foreground">We respond within 24 hours</p>
-                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Email Us</h3>
+                    <p className="text-muted-foreground mb-1">hello@cleanclub.com</p>
+                    <p className="text-sm text-muted-foreground">We respond within 24 hours</p>
                   </div>
                 </CardContent>
               </Card>
               
+              {/* Service Area */}
               <Card className="border-0 shadow-card">
                 <CardContent className="p-6">
-                  <div className="flex items-start">
-                    <div className="p-3 bg-primary-glow rounded-lg mr-4">
+                  <div className="text-center">
+                    <div className="p-3 bg-primary-glow rounded-lg mx-auto mb-4 w-fit">
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">Service Area</h3>
-                      <p className="text-muted-foreground mb-1">Greater Metro Area</p>
-                      <p className="text-sm text-muted-foreground">Free quotes within 25 miles</p>
-                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Service Area</h3>
+                    <p className="text-muted-foreground mb-1">Greater Metro Area</p>
+                    <p className="text-sm text-muted-foreground">Free quotes within 25 miles</p>
                   </div>
                 </CardContent>
               </Card>
               
+              {/* Business Hours */}
               <Card className="border-0 shadow-card">
                 <CardContent className="p-6">
-                  <div className="flex items-start">
-                    <div className="p-3 bg-primary-glow rounded-lg mr-4">
+                  <div className="text-center">
+                    <div className="p-3 bg-primary-glow rounded-lg mx-auto mb-4 w-fit">
                       <Clock className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">Business Hours</h3>
-                      <p className="text-muted-foreground mb-1">Monday - Friday: 8AM - 6PM</p>
-                      <p className="text-muted-foreground mb-1">Saturday: 9AM - 4PM</p>
-                      <p className="text-sm text-muted-foreground">Emergency services available</p>
-                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Business Hours</h3>
+                    <p className="text-muted-foreground mb-1">Monday - Friday: 8AM - 6PM</p>
+                    <p className="text-muted-foreground mb-1">Saturday: 9AM - 4PM</p>
+                    <p className="text-sm text-muted-foreground">Emergency services available</p>
                   </div>
                 </CardContent>
               </Card>
