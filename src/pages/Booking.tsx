@@ -808,10 +808,8 @@ const Booking = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center mr-3">
-                <span className="text-primary-foreground font-bold text-sm">C</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">Clean Club</span>
+              <Sparkles className="h-8 w-8 text-primary mr-3" />
+              <span className="text-xl font-bold text-foreground">EcoEase Cleaning</span>
             </div>
             <Button variant="ghost" onClick={() => navigate('/')}>
               <ArrowLeft className="w-4 h-4 mr-2" />
