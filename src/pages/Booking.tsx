@@ -11,6 +11,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { ArrowLeft, ArrowRight, Home, Sparkles, Plus, Calendar as CalendarIcon, MapPin, CreditCard, Clock } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 interface BookingState {
   serviceCategory: string;
@@ -145,6 +147,7 @@ const addOnOptions = [
 const Booking = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [step, setStep] = useState(1);
   const [booking, setBooking] = useState<BookingState>({
     serviceCategory: "",
@@ -215,6 +218,61 @@ const Booking = () => {
     "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
     "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
   ];
+
+  const handlePayment = async (paymentType: 'reserve' | 'full') => {
+    try {
+      // Save booking to database first
+      const bookingData = {
+        user_id: user?.id || null,
+        service_type: booking.serviceType,
+        bedrooms: booking.bedrooms,
+        bathrooms: booking.bathrooms,
+        rooms: booking.bedrooms + booking.bathrooms,
+        scheduled_date: booking.date?.toISOString().split('T')[0],
+        scheduled_time: booking.time,
+        address: booking.address,
+        city: '', // Extract from address if needed
+        state: '', // Extract from address if needed
+        zip_code: booking.zipCode,
+        frequency: booking.frequency,
+        add_ons: booking.addOns,
+        total_price: paymentType === 'reserve' ? 25 : totalPrice,
+        payment_type: paymentType,
+        status: 'pending'
+      };
+
+      const { data, error } = await supabase
+        .from('bookings')
+        .insert(bookingData)
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Booking error:', error);
+        toast({
+          title: "Booking Failed",
+          description: "There was an issue saving your booking. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Booking Reserved!",
+        description: `Your booking has been successfully ${paymentType === 'reserve' ? 'reserved with a $25 deposit' : 'confirmed with full payment'}.`,
+      });
+
+      // Navigate to bookings page or success page
+      navigate('/my-bookings');
+    } catch (error) {
+      console.error('Booking error:', error);
+      toast({
+        title: "Booking Failed",
+        description: "There was an issue processing your booking. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const renderStep = () => {
     switch (step) {
@@ -609,7 +667,9 @@ const Booking = () => {
       case 7:
         return (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Review & Confirm</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Review & Reserve</h2>
+            
+            {/* Booking Summary */}
             <Card>
               <CardHeader>
                 <CardTitle>Booking Summary</CardTitle>
@@ -618,6 +678,10 @@ const Booking = () => {
                 <div className="flex justify-between">
                   <span>Space:</span>
                   <span>{booking.bedrooms === 0 ? 'Studio' : `${booking.bedrooms} Bedroom${booking.bedrooms > 1 ? 's' : ''}`}, {booking.bathrooms} Bathroom{booking.bathrooms > 1 ? 's' : ''}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Square Footage:</span>
+                  <span>{booking.squareFootage} sq.ft</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Service:</span>
@@ -630,6 +694,10 @@ const Booking = () => {
                 <div className="flex justify-between">
                   <span>Date & Time:</span>
                   <span>{booking.date ? format(booking.date, "PPP") : "Not selected"} {booking.time && `at ${booking.time}`}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Address:</span>
+                  <span>{booking.address || "Not provided"}</span>
                 </div>
                 {booking.addOns.length > 0 && (
                   <div className="space-y-1">
@@ -651,10 +719,68 @@ const Booking = () => {
                 </div>
               </CardContent>
             </Card>
-            <Button className="w-full" size="lg">
-              <CreditCard className="w-4 h-4 mr-2" />
-              Confirm Booking
-            </Button>
+
+            {/* Payment Options */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <CreditCard className="w-5 h-5 mr-2" />
+                  Reserve Your Booking
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-semibold text-blue-900">Secure Your Spot</h3>
+                    <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">Recommended</span>
+                  </div>
+                  <p className="text-sm text-blue-700 mb-3">
+                    Reserve your preferred date and time with a small deposit. 
+                    Pay the remaining balance after your service is completed.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Reservation Fee:</span>
+                    <span className="font-bold text-blue-900">$25</span>
+                  </div>
+                </div>
+
+                <div className="grid gap-3">
+                  <Button 
+                    size="lg" 
+                    className="w-full justify-center"
+                    onClick={() => handlePayment('reserve')}
+                  >
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Reserve with $25 Deposit
+                  </Button>
+                  
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-background px-2 text-muted-foreground">or</span>
+                    </div>
+                  </div>
+
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full justify-center"
+                    onClick={() => handlePayment('full')}
+                  >
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Pay Full Amount (${totalPrice})
+                  </Button>
+                </div>
+
+                <div className="text-xs text-muted-foreground space-y-1">
+                  <p>• Secure payment processing by Stripe</p>
+                  <p>• You can reschedule or cancel up to 24 hours before your appointment</p>
+                  <p>• Final pricing may be adjusted after on-site consultation</p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         );
 
