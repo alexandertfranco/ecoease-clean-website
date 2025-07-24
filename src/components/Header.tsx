@@ -31,9 +31,9 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center mr-3">
-              <span className="text-primary-foreground font-bold text-sm">E</span>
+              <span className="text-primary-foreground font-bold text-sm">C</span>
             </div>
-            <span className="text-xl font-bold text-foreground">EcoEase Cleaning</span>
+            <span className="text-xl font-bold text-foreground">Clean Club</span>
           </div>
           
           {/* Desktop Navigation */}
@@ -78,7 +78,7 @@ const Header = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => navigate('/booking')}>
+                  <DropdownMenuItem onClick={() => navigate('/my-bookings')}>
                     My Bookings
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -131,10 +131,15 @@ const Header = () => {
                 (555) 123-CLEAN
               </Button>
               {user ? (
-                <Button variant="ghost" size="sm" onClick={signOut} className="w-fit">
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Sign Out
-                </Button>
+                <>
+                  <Button variant="ghost" size="sm" onClick={() => navigate('/my-bookings')} className="w-fit">
+                    My Bookings
+                  </Button>
+                  <Button variant="ghost" size="sm" onClick={signOut} className="w-fit">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </>
               ) : (
                 <Button variant="outline" size="sm" onClick={() => navigate('/auth')} className="w-fit">
                   Sign In
