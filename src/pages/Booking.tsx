@@ -186,7 +186,10 @@ const Booking = () => {
   const totalPrice = basePrice + roomMultiplier + addOnPrice;
 
   const nextStep = () => {
-    if (step < totalSteps) setStep(step + 1);
+    if (step < totalSteps) {
+      setStep(step + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const prevStep = () => {
