@@ -101,7 +101,7 @@ const Auth = () => {
         <Card className="shadow-card border-0">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center bg-gradient-primary bg-clip-text text-transparent">
-              Welcome to SparkleClean
+              Welcome to Clean Club
             </CardTitle>
             <CardDescription className="text-center text-muted-foreground">
               Sign in to your account or create a new one
