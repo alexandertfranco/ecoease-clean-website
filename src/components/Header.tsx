@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Menu, X, User, LogOut } from "lucide-react";
+import { Phone, Menu, X, User, LogOut, Sparkles } from "lucide-react";
 import { useState } from "react";
-import ecoeaseLogo from "@/assets/ecoease-logo.png";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import {
@@ -31,11 +30,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src={ecoeaseLogo} 
-              alt="EcoEase Cleaning Logo" 
-              className="w-10 h-10 mr-3 rounded-lg"
-            />
+            <Sparkles className="h-8 w-8 text-primary mr-3" />
             <span className="text-xl font-bold text-foreground">EcoEase Cleaning</span>
           </div>
           

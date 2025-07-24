@@ -1,4 +1,4 @@
-import { Heart, Phone, Mail, MapPin } from "lucide-react";
+import { Heart, Phone, Mail, MapPin, Sparkles } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -8,9 +8,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
-                <span className="text-primary-foreground font-bold text-sm">E</span>
-              </div>
+              <Sparkles className="h-8 w-8 text-primary mr-3" />
               <span className="text-xl font-bold">EcoEase Cleaning</span>
             </div>
             <p className="text-background/80 mb-4 max-w-md">
