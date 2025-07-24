@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
+import ecoeaseLogo from "@/assets/ecoease-logo.png";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import {
@@ -30,10 +31,12 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center mr-3">
-              <span className="text-primary-foreground font-bold text-sm">C</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">Clean Club</span>
+            <img 
+              src={ecoeaseLogo} 
+              alt="EcoEase Cleaning Logo" 
+              className="w-10 h-10 mr-3 rounded-lg"
+            />
+            <span className="text-xl font-bold text-foreground">EcoEase Cleaning</span>
           </div>
           
           {/* Desktop Navigation */}
