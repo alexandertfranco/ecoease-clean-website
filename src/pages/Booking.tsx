@@ -159,12 +159,7 @@ const Booking = () => {
     addOns: []
   });
 
-  // Redirect to auth if not logged in
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate('/auth');
-    }
-  }, [user, loading, navigate]);
+  // Optional: Auto-fill contact info from user data if logged in
 
   // Auto-fill contact info from user data
   useEffect(() => {
@@ -622,7 +617,7 @@ const Booking = () => {
     }
   };
 
-  // Show loading while checking authentication
+  // Show loading while checking authentication (but still allow access)
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -632,11 +627,6 @@ const Booking = () => {
         </div>
       </div>
     );
-  }
-
-  // Don't render anything while redirecting
-  if (!user) {
-    return null;
   }
 
   return (
