@@ -16,6 +16,7 @@ interface BookingState {
   serviceCategory: string;
   bedrooms: number;
   bathrooms: number;
+  squareFootage: string;
   serviceType: string;
   frequency: string;
   date: Date | undefined;
@@ -149,6 +150,7 @@ const Booking = () => {
     serviceCategory: "",
     bedrooms: 1,
     bathrooms: 1,
+    squareFootage: "0-999",
     serviceType: "standard-plus",
     frequency: "one-time",
     date: undefined,
@@ -319,6 +321,44 @@ const Booking = () => {
                     onClick={() => setBooking({...booking, bathrooms: num})}
                   >
                     {num}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Square Footage */}
+            <div>
+              <Label className="text-base font-semibold mb-3 block">Square Footage of Your Home</Label>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "0-999",
+                  "1000-1499", 
+                  "1500-1999",
+                  "2000-2499",
+                  "2500-2999",
+                  "3000-3499",
+                  "3500-3999",
+                  "4000-4499",
+                  "4500-4999",
+                  "5000-5499",
+                  "5500-5999",
+                  "6000-6499",
+                  "6500-6999",
+                  "7000-7499",
+                  "7500-7999",
+                  "8000-8499",
+                  "8500-8999",
+                  "9000-9499",
+                  "9500-9999",
+                  "10000+"
+                ].map(range => (
+                  <Badge
+                    key={range}
+                    variant={booking.squareFootage === range ? "default" : "outline"}
+                    className="px-3 py-2 cursor-pointer"
+                    onClick={() => setBooking({...booking, squareFootage: range})}
+                  >
+                    {range} sq.ft
                   </Badge>
                 ))}
               </div>
