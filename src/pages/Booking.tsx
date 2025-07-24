@@ -28,7 +28,7 @@ const serviceTypes = [
   {
     id: "standard",
     name: "Standard",
-    description: "60pt Checklist",
+    description: "60 Point Checklist",
     features: ["Recurring options available", "Add-ons available"],
     price: 80,
     duration: "2-3 hours"
@@ -36,7 +36,7 @@ const serviceTypes = [
   {
     id: "standard-plus",
     name: "Standard Plus", 
-    description: "75pt Checklist",
+    description: "75 Point Checklist",
     features: ["Recurring options available", "Add-ons available", "50% Additional time"],
     price: 120,
     duration: "3-4 hours",
@@ -45,10 +45,18 @@ const serviceTypes = [
   {
     id: "deep",
     name: "Deep Cleaning",
-    description: "75pt Checklist", 
+    description: "75 Point Checklist", 
     features: ["Recurring options available", "Add-ons included (Fridge, oven, cabinets)", "150% Additional time"],
     price: 180,
     duration: "4-6 hours"
+  },
+  {
+    id: "move-in-out",
+    name: "Move In/Move Out",
+    description: "Complete Property Checklist",
+    features: ["One-time service only", "All add-ons included", "200% Additional time", "Empty property cleaning"],
+    price: 250,
+    duration: "6-8 hours"
   }
 ];
 
