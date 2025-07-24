@@ -6,14 +6,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, ArrowRight, Home, Sparkles, Plus, Calendar, MapPin, CreditCard } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { ArrowLeft, ArrowRight, Home, Sparkles, Plus, Calendar as CalendarIcon, MapPin, CreditCard, Clock } from "lucide-react";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 interface BookingState {
   bedrooms: number;
   bathrooms: number;
   serviceType: string;
   frequency: string;
-  date: string;
+  date: Date | undefined;
+  time: string;
   address: string;
   contact: {
     name: string;
@@ -144,7 +149,8 @@ const Booking = () => {
     bathrooms: 1,
     serviceType: "standard-plus",
     frequency: "one-time",
-    date: "",
+    date: undefined,
+    time: "",
     address: "",
     contact: { name: "", email: "", phone: "" },
     zipCode: "",
@@ -198,6 +204,12 @@ const Booking = () => {
         : [...prev.addOns, addOnId]
     }));
   };
+
+  // Available time slots
+  const availableTimeSlots = [
+    "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+    "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
+  ];
 
   const renderStep = () => {
     switch (step) {
@@ -378,15 +390,55 @@ const Booking = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">When should we come?</h2>
+            
+            {/* Date Selection */}
             <div className="space-y-4">
               <Label>Select your preferred date</Label>
-              <Input
-                type="date"
-                value={booking.date}
-                onChange={(e) => setBooking({...booking, date: e.target.value})}
-                min={new Date().toISOString().split('T')[0]}
-              />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !booking.date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {booking.date ? format(booking.date, "PPP") : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={booking.date}
+                    onSelect={(date) => setBooking(prev => ({ ...prev, date, time: "" }))}
+                    disabled={(date) => date < new Date()}
+                    initialFocus
+                    className="p-3 pointer-events-auto"
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
+
+            {/* Time Selection */}
+            {booking.date && (
+              <div className="space-y-4">
+                <Label>Select your preferred time</Label>
+                <div className="grid grid-cols-3 gap-3">
+                  {availableTimeSlots.map((timeSlot) => (
+                    <Button
+                      key={timeSlot}
+                      variant={booking.time === timeSlot ? "default" : "outline"}
+                      className="text-sm"
+                      onClick={() => setBooking(prev => ({ ...prev, time: timeSlot }))}
+                    >
+                      <Clock className="h-4 w-4 mr-2" />
+                      {timeSlot}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         );
 
@@ -471,8 +523,8 @@ const Booking = () => {
                   <span>{booking.frequency.replace('-', ' ')}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Date:</span>
-                  <span>{new Date(booking.date).toLocaleDateString()}</span>
+                  <span>Date & Time:</span>
+                  <span>{booking.date ? format(booking.date, "PPP") : "Not selected"} {booking.time && `at ${booking.time}`}</span>
                 </div>
                 {booking.addOns.length > 0 && (
                   <div className="space-y-1">
@@ -588,7 +640,7 @@ const Booking = () => {
                 </Button>
                 <Button 
                   onClick={nextStep}
-                  disabled={step === totalSteps}
+                  disabled={step === totalSteps || (step === 4 && (!booking.date || !booking.time))}
                 >
                   Next Step
                   <ArrowRight className="w-4 h-4 ml-2" />
