@@ -13,6 +13,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 interface BookingState {
+  serviceCategory: string;
   bedrooms: number;
   bathrooms: number;
   serviceType: string;
@@ -145,6 +146,7 @@ const Booking = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [booking, setBooking] = useState<BookingState>({
+    serviceCategory: "",
     bedrooms: 1,
     bathrooms: 1,
     serviceType: "standard-plus",
@@ -178,7 +180,7 @@ const Booking = () => {
     }
   }, [user, booking.contact.email]);
 
-  const totalSteps = 6;
+  const totalSteps = 7;
   const selectedService = serviceTypes.find(s => s.id === booking.serviceType);
   const basePrice = selectedService?.price || 0;
   const roomMultiplier = (booking.bedrooms * 20) + (booking.bathrooms * 15);
@@ -214,6 +216,68 @@ const Booking = () => {
   const renderStep = () => {
     switch (step) {
       case 1:
+        return (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-foreground mb-6">What type of service do you need?</h2>
+            <p className="text-muted-foreground mb-6">
+              Choose the category that best describes your cleaning needs.
+            </p>
+            
+            <div className="grid gap-6">
+              {[
+                {
+                  id: "residential",
+                  name: "Residential Cleaning",
+                  description: "Homes, apartments, condos, and townhouses",
+                  icon: "🏠"
+                },
+                {
+                  id: "commercial",
+                  name: "Commercial Cleaning", 
+                  description: "Offices, retail spaces, and business facilities",
+                  icon: "🏢"
+                },
+                {
+                  id: "carpet-upholstery",
+                  name: "Carpet & Upholstery",
+                  description: "Deep cleaning for carpets, rugs, and furniture",
+                  icon: "🛋️"
+                },
+                {
+                  id: "post-construction",
+                  name: "Post-Construction",
+                  description: "Construction cleanup and debris removal",
+                  icon: "🔨"
+                }
+              ].map(category => (
+                <Card 
+                  key={category.id}
+                  className={`cursor-pointer transition-all hover:shadow-md ${
+                    booking.serviceCategory === category.id ? 'ring-2 ring-primary bg-primary/5' : ''
+                  }`}
+                  onClick={() => setBooking({...booking, serviceCategory: category.id})}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="text-3xl">{category.icon}</div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold">{category.name}</h3>
+                        <p className="text-sm text-muted-foreground">{category.description}</p>
+                      </div>
+                      {booking.serviceCategory === category.id && (
+                        <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                          <span className="text-primary-foreground text-sm">✓</span>
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 2:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">Tell us about your space</h2>
@@ -294,7 +358,7 @@ const Booking = () => {
           </div>
         );
 
-      case 2:
+      case 3:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">Add-on Services</h2>
@@ -353,7 +417,7 @@ const Booking = () => {
           </div>
         );
 
-      case 3:
+      case 4:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">How often do you need cleaning?</h2>
@@ -386,7 +450,7 @@ const Booking = () => {
           </div>
         );
 
-      case 4:
+      case 5:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">When should we come?</h2>
@@ -442,7 +506,7 @@ const Booking = () => {
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">Where should we clean?</h2>
@@ -501,7 +565,7 @@ const Booking = () => {
           </div>
         );
 
-      case 6:
+      case 7:
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-foreground mb-6">Review & Confirm</h2>
@@ -640,7 +704,7 @@ const Booking = () => {
                 </Button>
                 <Button 
                   onClick={nextStep}
-                  disabled={step === totalSteps || (step === 4 && (!booking.date || !booking.time))}
+                  disabled={step === totalSteps || (step === 1 && !booking.serviceCategory) || (step === 5 && (!booking.date || !booking.time))}
                 >
                   Next Step
                   <ArrowRight className="w-4 h-4 ml-2" />
