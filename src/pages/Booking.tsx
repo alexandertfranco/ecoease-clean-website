@@ -193,7 +193,10 @@ const Booking = () => {
   };
 
   const prevStep = () => {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) {
+      setStep(step - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const toggleAddOn = (addOnId: string) => {
