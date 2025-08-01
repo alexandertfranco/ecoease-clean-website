@@ -9,7 +9,7 @@ const services = [
     title: "Residential Cleaning",
     description: "Complete home cleaning with eco-friendly products. Perfect for busy families and professionals who want a spotless home.",
     features: ["Kitchen & Bathrooms", "Dusting & Vacuuming", "Window Cleaning", "Floor Care", "Laundry Folding", "Dishwashing"],
-    pricing: "As low as $120",
+    pricing: "As low as $220",
     duration: "2-4 hours",
     popular: false,
     category: "Home"
@@ -19,7 +19,7 @@ const services = [
     title: "Commercial Cleaning",
     description: "Professional office and business cleaning services to maintain a healthy, productive work environment for your team.",
     features: ["Office Spaces", "Retail Stores", "Medical Facilities", "Post-Construction", "Sanitization", "Trash Removal"],
-    pricing: "As low as $170",
+    pricing: "As low as $270",
     duration: "3-6 hours",
     popular: true,
     category: "Business"
@@ -29,7 +29,7 @@ const services = [
     title: "Deep Cleaning",
     description: "Intensive, thorough cleaning service for homes that need extra attention, seasonal maintenance, or special occasions.",
     features: ["Detailed Sanitization", "Appliance Cleaning", "Baseboard & Trim", "Light Fixtures", "Cabinet Interiors", "Oven & Fridge"],
-    pricing: "As low as $250",
+    pricing: "As low as $350",
     duration: "4-8 hours",
     popular: true,
     category: "Premium"
@@ -39,7 +39,7 @@ const services = [
     title: "Carpet & Upholstery",
     description: "Professional cleaning and stain removal for carpets, rugs, and furniture using safe, effective methods.",
     features: ["Steam Cleaning", "Stain Removal", "Odor Elimination", "Fabric Protection", "Pet-Safe Treatment", "Quick Drying"],
-    pricing: "Starting at $60",
+    pricing: "Starting at $160",
     duration: "1-3 hours",
     popular: false,
     category: "Specialty"
@@ -49,7 +49,7 @@ const services = [
     title: "Post-Construction",
     description: "Specialized cleaning after renovations or construction work to remove dust, debris, and get your space move-in ready.",
     features: ["Dust Removal", "Paint Cleanup", "Window Washing", "Final Touch-ups", "Debris Disposal", "Safety Cleanup"],
-    pricing: "Starting at $200",
+    pricing: "Starting at $300",
     duration: "4-12 hours",
     popular: false,
     category: "Specialty"
@@ -59,7 +59,7 @@ const services = [
     title: "Green Cleaning",
     description: "100% environmentally conscious cleaning using only natural, non-toxic, biodegradable products safe for families and pets.",
     features: ["Non-Toxic Products", "Child & Pet Safe", "Allergen-Free", "Sustainable Methods", "Organic Solutions", "Zero Chemicals"],
-    pricing: "Starting at $90",
+    pricing: "Starting at $190",
     duration: "2-5 hours",
     popular: true,
     category: "Eco"
