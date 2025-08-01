@@ -17,33 +17,40 @@ const Hero = () => {
             </h1>
           </div>
           
-          {/* Tagline */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">Professional eco-friendly cleaning service that cares for your home and your family</p>
+          {/* Tagline - More compelling like Peachy Clean */}
+          <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">Saving You Time and Eliminating Stress Through Quality <span className="text-primary font-semibold">Eco-Friendly</span> Home Cleaning</p>
           
-          {/* Value proposition */}
+          {/* Value proposition - Updated with better messaging */}
           <div className="flex flex-wrap justify-center gap-6 mb-10 text-sm md:text-base">
             <div className="flex items-center text-foreground">
               <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              100% Eco-Friendly Products
+              All cleaners are highly vetted and insured
+            </div>
+            <div className="flex items-center text-foreground">
+              <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+              Trained with our checklists
             </div>
             <div className="flex items-center text-foreground">
               <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              Trusted & Insured
-            </div>
-            <div className="flex items-center text-foreground">
-              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              Satisfaction Guaranteed
+              Reliable & friendly
             </div>
           </div>
           
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Modern styling */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" className="group" onClick={() => window.location.href = '/booking'}>
-              <Phone className="h-5 w-5 mr-2" />
-              Get Free Quote
-              <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Button 
+              size="lg" 
+              className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg"
+              onClick={() => window.location.href = '/booking'}
+            >
+              Book a Cleaning
+              <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg"
+            >
               Our Services
             </Button>
           </div>
