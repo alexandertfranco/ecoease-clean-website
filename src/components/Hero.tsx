@@ -8,9 +8,9 @@ const Hero = () => {
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-3 gap-12 items-center">
           {/* Left side - Content */}
-          <div className="text-center lg:text-left animate-fade-in">
+          <div className="lg:col-span-2 text-center lg:text-left animate-fade-in">
             {/* Logo/Brand */}
             <div className="flex items-center justify-center lg:justify-start mb-8">
               <Sparkles className="h-12 w-12 text-primary mr-3" />
@@ -58,19 +58,19 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right side - Hero Image */}
-          <div className="relative lg:order-last">
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl">
+          {/* Right side - Hero Image (smaller) */}
+          <div className="relative">
+            <div className="relative rounded-xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Beautiful clean living room interior" 
-                className="w-full h-[400px] lg:h-[500px] object-cover"
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                alt="Luxury clean living room with modern furniture" 
+                className="w-full h-[300px] lg:h-[350px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
             </div>
             {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-secondary/30 rounded-full blur-sm"></div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-3 -left-3 w-8 h-8 bg-primary/20 rounded-full blur-sm"></div>
           </div>
         </div>
         
