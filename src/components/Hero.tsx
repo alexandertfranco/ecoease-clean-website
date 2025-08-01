@@ -71,7 +71,7 @@ const Hero = () => {
               >
                 <CarouselContent>
                   <CarouselItem>
-                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-white p-2">
                       <img 
                         src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                         alt="Luxury clean living room with modern furniture" 
@@ -80,7 +80,7 @@ const Hero = () => {
                     </div>
                   </CarouselItem>
                   <CarouselItem>
-                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-white p-2">
                       <img 
                         src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                         alt="Recently cleaned luxury bedroom with pristine white bedding" 
@@ -89,7 +89,7 @@ const Hero = () => {
                     </div>
                   </CarouselItem>
                   <CarouselItem>
-                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-white p-2">
                       <img 
                         src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                         alt="Elegant bathroom with clean white tiles" 
