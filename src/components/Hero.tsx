@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Phone, ArrowRight, Sparkles } from "lucide-react";
 const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
@@ -56,14 +57,42 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Right side - Large Hero Image */}
+          {/* Right side - Hero Image Carousel */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
-              <img 
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Luxury clean living room with modern furniture" 
-                className="w-full h-[450px] lg:h-[500px] object-cover rounded-[2.5rem]"
-              />
+            <div className="relative w-full max-w-lg">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  <CarouselItem>
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
+                      <img 
+                        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        alt="Luxury clean living room with modern furniture" 
+                        className="w-full h-[450px] lg:h-[500px] object-cover rounded-[2.5rem]"
+                      />
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
+                      <img 
+                        src="https://images.unsplash.com/photo-1571247501701-01dc9e75c1bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        alt="Modern clean kitchen with marble countertops" 
+                        className="w-full h-[450px] lg:h-[500px] object-cover rounded-[2.5rem]"
+                      />
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
+                      <img 
+                        src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        alt="Elegant bathroom with clean white tiles" 
+                        className="w-full h-[450px] lg:h-[500px] object-cover rounded-[2.5rem]"
+                      />
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+                <CarouselPrevious className="left-4" />
+                <CarouselNext className="right-4" />
+              </Carousel>
             </div>
           </div>
         </div>
