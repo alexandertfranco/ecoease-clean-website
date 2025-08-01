@@ -8,18 +8,18 @@ const Hero = () => {
       <div className="absolute top-20 right-20 w-64 h-64 bg-primary-glow rounded-full blur-3xl opacity-30 animate-pulse" />
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Logo in top right */}
+      <div className="absolute top-8 right-8 flex items-center z-20">
+        <Sparkles className="h-12 w-12 text-primary mr-3" />
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+          EcoEase <span className="text-primary">Cleaning</span>
+        </h1>
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10 pt-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[600px]">
           {/* Left side - Content */}
           <div className="text-left animate-fade-in">
-            {/* Logo/Brand */}
-            <div className="flex items-center mb-8">
-              <Sparkles className="h-12 w-12 text-primary mr-3" />
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground">
-                EcoEase <span className="text-primary">Cleaning</span>
-              </h1>
-            </div>
-            
             {/* Main headline */}
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
               Hassle-Free Home Cleaning<br />
