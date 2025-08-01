@@ -82,8 +82,8 @@ const Hero = () => {
                   <CarouselItem>
                     <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
                       <img 
-                        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                        alt="Modern clean bedroom with white linens" 
+                        src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        alt="Recently cleaned luxury bedroom with pristine white bedding" 
                         className="w-full h-[450px] lg:h-[500px] object-cover rounded-[2.5rem]"
                       />
                     </div>
