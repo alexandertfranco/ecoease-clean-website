@@ -9,8 +9,8 @@ const Hero = () => {
       <div className="absolute top-20 right-20 w-64 h-64 bg-primary-glow rounded-full blur-3xl opacity-30 animate-pulse" />
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
-      {/* Logo in top left */}
-      <div className="absolute top-8 left-8 flex items-center z-20">
+      {/* Logo positioned below header */}
+      <div className="absolute top-24 left-8 flex items-center z-20">
         <Sparkles className="h-16 w-16 text-primary mr-4" />
         <h1 className="text-5xl md:text-6xl font-bold text-foreground">
           EcoEase <span className="text-primary">Cleaning</span>
