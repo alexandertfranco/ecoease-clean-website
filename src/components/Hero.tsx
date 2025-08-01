@@ -8,67 +8,85 @@ const Hero = () => {
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          {/* Logo/Brand */}
-          <div className="flex items-center justify-center mb-8">
-            <Sparkles className="h-12 w-12 text-primary mr-3" />
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground">
-              EcoEase <span className="text-primary">Cleaning</span>
-            </h1>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Content */}
+          <div className="text-center lg:text-left animate-fade-in">
+            {/* Logo/Brand */}
+            <div className="flex items-center justify-center lg:justify-start mb-8">
+              <Sparkles className="h-12 w-12 text-primary mr-3" />
+              <h1 className="text-5xl md:text-6xl font-bold text-foreground">
+                EcoEase <span className="text-primary">Cleaning</span>
+              </h1>
+            </div>
+            
+            {/* Tagline - More compelling like Peachy Clean */}
+            <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed">Saving You Time and Eliminating Stress Through Quality <span className="text-primary font-semibold">Eco-Friendly</span> Home Cleaning</p>
+            
+            {/* Value proposition - Updated with better messaging */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-10 text-sm md:text-base">
+              <div className="flex items-center text-foreground">
+                <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                All cleaners are highly vetted and insured
+              </div>
+              <div className="flex items-center text-foreground">
+                <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                Trained with our checklists
+              </div>
+              <div className="flex items-center text-foreground">
+                <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Reliable & friendly
+              </div>
+            </div>
+            
+            {/* CTA Buttons - Modern styling */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+              <Button 
+                size="lg" 
+                className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg"
+                onClick={() => window.location.href = '/booking'}
+              >
+                Book a Cleaning
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg"
+              >
+                Our Services
+              </Button>
+            </div>
           </div>
-          
-          {/* Tagline - More compelling like Peachy Clean */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">Saving You Time and Eliminating Stress Through Quality <span className="text-primary font-semibold">Eco-Friendly</span> Home Cleaning</p>
-          
-          {/* Value proposition - Updated with better messaging */}
-          <div className="flex flex-wrap justify-center gap-6 mb-10 text-sm md:text-base">
-            <div className="flex items-center text-foreground">
-              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              All cleaners are highly vetted and insured
+
+          {/* Right side - Hero Image */}
+          <div className="relative lg:order-last">
+            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Beautiful clean living room interior" 
+                className="w-full h-[400px] lg:h-[500px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
-            <div className="flex items-center text-foreground">
-              <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-              Trained with our checklists
-            </div>
-            <div className="flex items-center text-foreground">
-              <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-              Reliable & friendly
-            </div>
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-secondary/30 rounded-full blur-sm"></div>
           </div>
-          
-          {/* CTA Buttons - Modern styling */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg"
-              onClick={() => window.location.href = '/booking'}
-            >
-              Book a Cleaning
-              <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg"
-            >
-              Our Services
-            </Button>
+        </div>
+        
+        {/* Quick stats */}
+        <div className="mt-16 grid grid-cols-3 gap-8 max-w-md mx-auto">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-primary">500+</div>
+            <div className="text-sm text-muted-foreground">Happy Homes</div>
           </div>
-          
-          {/* Quick stats */}
-          <div className="mt-16 grid grid-cols-3 gap-8 max-w-md mx-auto">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary">500+</div>
-              <div className="text-sm text-muted-foreground">Happy Homes</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary">5★</div>
-              <div className="text-sm text-muted-foreground">Average Rating</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary">3+</div>
-              <div className="text-sm text-muted-foreground">Years Experience</div>
-            </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-primary">5★</div>
+            <div className="text-sm text-muted-foreground">Average Rating</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-primary">3+</div>
+            <div className="text-sm text-muted-foreground">Years Experience</div>
           </div>
         </div>
       </div>
