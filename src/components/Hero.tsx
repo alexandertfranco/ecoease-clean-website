@@ -24,7 +24,7 @@ const Hero = () => {
             {/* Main headline */}
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
               Hassle-Free Home Cleaning<br />
-              In <span className="text-primary">Your Area</span>.
+              In <span className="text-primary">Bucks County</span>.
             </h2>
             
             {/* Tagline */}
