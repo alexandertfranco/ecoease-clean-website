@@ -39,7 +39,7 @@ const serviceTypes = [
     name: "Standard",
     description: "60 Point Checklist",
     features: ["Recurring options available", "Add-ons available"],
-    price: 80,
+    price: 180,
     duration: "2-3 hours"
   },
   {
@@ -47,7 +47,7 @@ const serviceTypes = [
     name: "Standard Plus", 
     description: "75 Point Checklist",
     features: ["Recurring options available", "Add-ons available", "50% Additional time"],
-    price: 120,
+    price: 220,
     duration: "3-4 hours",
     popular: true
   },
@@ -56,7 +56,7 @@ const serviceTypes = [
     name: "Deep Cleaning",
     description: "75 Point Checklist", 
     features: ["Recurring options available", "Add-ons included (Fridge, oven, cabinets)", "150% Additional time"],
-    price: 180,
+    price: 280,
     duration: "4-6 hours"
   },
   {
@@ -64,7 +64,7 @@ const serviceTypes = [
     name: "Move In/Move Out",
     description: "Complete Property Checklist",
     features: ["One-time service only", "All add-ons included", "200% Additional time", "Empty property cleaning"],
-    price: 250,
+    price: 350,
     duration: "6-8 hours"
   }
 ];
@@ -73,73 +73,73 @@ const addOnOptions = [
   {
     id: "inside-fridge",
     name: "Inside Fridge (empty)",
-    price: 30,
+    price: 130,
     description: "Deep clean inside of refrigerator"
   },
   {
     id: "inside-oven", 
     name: "Inside Oven",
-    price: 30,
+    price: 130,
     description: "Clean inside of oven and racks"
   },
   {
     id: "inside-microwave",
     name: "Inside Microwave", 
-    price: 20,
+    price: 120,
     description: "Clean inside of microwave"
   },
   {
     id: "kitchen-cabinets",
     name: "Inside Kitchen Cabinets (empty)",
-    price: 30,
+    price: 130,
     description: "Wipe down inside of empty cabinets"
   },
   {
     id: "pets-hair",
     name: "Pets/Pet Hair",
-    price: 30,
+    price: 130,
     description: "Extra attention for pet hair removal"
   },
   {
     id: "wash-dishes",
     name: "Wash Dishes",
-    price: 25,
+    price: 125,
     description: "Hand wash dishes and cookware"
   },
   {
     id: "laundry",
     name: "Wash Load of Laundry",
-    price: 30,
+    price: 130,
     description: "Wash, dry, and fold one load"
   },
   {
     id: "interior-windows",
     name: "Clean Interior Windows",
-    price: 60,
+    price: 160,
     description: "Clean all interior windows"
   },
   {
     id: "window-blinds",
     name: "Clean Window Blinds",
-    price: 30,
+    price: 130,
     description: "Dust and wipe window blinds"
   },
   {
     id: "baseboards",
     name: "Wipe Down Baseboards",
-    price: 45,
+    price: 145,
     description: "Clean all baseboards throughout home"
   },
   {
     id: "basement",
     name: "Clean Finished Basement",
-    price: 40,
+    price: 140,
     description: "Clean finished basement area"
   },
   {
     id: "organizing",
     name: "Hour of Organizing",
-    price: 40,
+    price: 140,
     description: "Professional organizing service per hour"
   }
 ];
