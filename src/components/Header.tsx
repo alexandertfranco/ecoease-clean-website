@@ -29,11 +29,11 @@ const Header = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Empty space where logo was */}
-          <div className="flex items-center">
+          <div className="flex items-center w-80">
           </div>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             <button 
               onClick={() => scrollToSection('services')}
               className="text-muted-foreground hover:text-primary transition-colors"

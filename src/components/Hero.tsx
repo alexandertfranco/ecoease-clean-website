@@ -11,8 +11,8 @@ const Hero = () => {
       
       {/* Logo in top left */}
       <div className="absolute top-8 left-8 flex items-center z-20">
-        <Sparkles className="h-12 w-12 text-primary mr-3" />
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+        <Sparkles className="h-16 w-16 text-primary mr-4" />
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground">
           EcoEase <span className="text-primary">Cleaning</span>
         </h1>
       </div>
