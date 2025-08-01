@@ -61,7 +61,7 @@ const Header = () => {
               (555) 123-CLEAN
             </Button>
             <Button variant="hero" size="sm" onClick={() => navigate('/booking')}>
-              Book Now
+              Book Your Clean
             </Button>
             
             {/* Auth Section */}
