@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Phone, ArrowRight, Sparkles } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
       {/* Background decoration */}
@@ -8,8 +9,8 @@ const Hero = () => {
       <div className="absolute top-20 right-20 w-64 h-64 bg-primary-glow rounded-full blur-3xl opacity-30 animate-pulse" />
       <div className="absolute bottom-20 left-20 w-48 h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
-      {/* Logo in top right */}
-      <div className="absolute top-8 right-8 flex items-center z-20">
+      {/* Logo in top left */}
+      <div className="absolute top-8 left-8 flex items-center z-20">
         <Sparkles className="h-12 w-12 text-primary mr-3" />
         <h1 className="text-3xl md:text-4xl font-bold text-foreground">
           EcoEase <span className="text-primary">Cleaning</span>
@@ -60,7 +61,14 @@ const Hero = () => {
           {/* Right side - Hero Image Carousel */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
-              <Carousel className="w-full">
+              <Carousel 
+                className="w-full"
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                  }),
+                ]}
+              >
                 <CarouselContent>
                   <CarouselItem>
                     <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
@@ -74,8 +82,8 @@ const Hero = () => {
                   <CarouselItem>
                     <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-4">
                       <img 
-                        src="https://images.unsplash.com/photo-1571247501701-01dc9e75c1bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                        alt="Modern clean kitchen with marble countertops" 
+                        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        alt="Modern clean bedroom with white linens" 
                         className="w-full h-[450px] lg:h-[500px] object-cover rounded-[2.5rem]"
                       />
                     </div>

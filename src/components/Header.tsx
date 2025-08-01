@@ -28,10 +28,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Empty space where logo was */}
           <div className="flex items-center">
-            <Sparkles className="h-8 w-8 text-primary mr-3" />
-            <span className="text-xl font-bold text-foreground">EcoEase Cleaning</span>
           </div>
           
           {/* Desktop Navigation */}
