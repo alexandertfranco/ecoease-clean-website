@@ -73,73 +73,73 @@ const addOnOptions = [
   {
     id: "inside-fridge",
     name: "Inside Fridge (empty)",
-    price: 130,
+    price: 30,
     description: "Deep clean inside of refrigerator"
   },
   {
     id: "inside-oven", 
     name: "Inside Oven",
-    price: 130,
+    price: 30,
     description: "Clean inside of oven and racks"
   },
   {
     id: "inside-microwave",
     name: "Inside Microwave", 
-    price: 120,
+    price: 20,
     description: "Clean inside of microwave"
   },
   {
     id: "kitchen-cabinets",
     name: "Inside Kitchen Cabinets (empty)",
-    price: 130,
+    price: 30,
     description: "Wipe down inside of empty cabinets"
   },
   {
     id: "pets-hair",
     name: "Pets/Pet Hair",
-    price: 130,
+    price: 30,
     description: "Extra attention for pet hair removal"
   },
   {
     id: "wash-dishes",
     name: "Wash Dishes",
-    price: 125,
+    price: 25,
     description: "Hand wash dishes and cookware"
   },
   {
     id: "laundry",
     name: "Wash Load of Laundry",
-    price: 130,
+    price: 30,
     description: "Wash, dry, and fold one load"
   },
   {
     id: "interior-windows",
     name: "Clean Interior Windows",
-    price: 160,
+    price: 60,
     description: "Clean all interior windows"
   },
   {
     id: "window-blinds",
     name: "Clean Window Blinds",
-    price: 130,
+    price: 30,
     description: "Dust and wipe window blinds"
   },
   {
     id: "baseboards",
     name: "Wipe Down Baseboards",
-    price: 145,
+    price: 45,
     description: "Clean all baseboards throughout home"
   },
   {
     id: "basement",
     name: "Clean Finished Basement",
-    price: 140,
+    price: 40,
     description: "Clean finished basement area"
   },
   {
     id: "organizing",
     name: "Hour of Organizing",
-    price: 140,
+    price: 40,
     description: "Professional organizing service per hour"
   }
 ];
