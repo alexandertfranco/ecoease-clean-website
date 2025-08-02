@@ -54,16 +54,6 @@ const services = [
     popular: false,
     category: "Specialty"
   },
-  {
-    icon: Leaf,
-    title: "Green Cleaning",
-    description: "100% environmentally conscious cleaning using only natural, non-toxic, biodegradable products safe for families and pets.",
-    features: ["Non-Toxic Products", "Child & Pet Safe", "Allergen-Free", "Sustainable Methods", "Organic Solutions", "Zero Chemicals"],
-    pricing: "Starting at $190",
-    duration: "2-5 hours",
-    popular: true,
-    category: "Eco"
-  }
 ];
 
 const Services = () => {
