@@ -11,7 +11,7 @@ const services = [
     features: ["Kitchen & Bathrooms", "Dusting & Vacuuming", "Window Cleaning", "Floor Care", "Laundry Folding", "Dishwashing"],
     pricing: "As low as $220",
     duration: "2-4 hours",
-    popular: false,
+    popular: true,
     category: "Home"
   },
   {
@@ -21,7 +21,7 @@ const services = [
     features: ["Office Spaces", "Retail Stores", "Medical Facilities", "Post-Construction", "Sanitization", "Trash Removal"],
     pricing: "As low as $270",
     duration: "3-6 hours",
-    popular: true,
+    popular: false,
     category: "Business"
   },
   {
@@ -73,7 +73,8 @@ const Services = () => {
         
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
-          {services.map((service, index) => (
+          {/* First row - 3 cards */}
+          {services.slice(0, 3).map((service, index) => (
             <Card 
               key={service.title} 
               className="group hover:shadow-glow transition-all duration-300 hover:-translate-y-2 border-0 shadow-elegant relative overflow-hidden"
@@ -143,6 +144,80 @@ const Services = () => {
               </CardContent>
             </Card>
           ))}
+          
+          {/* Second row - 2 centered cards */}
+          <div className="lg:col-start-1 lg:col-end-4 lg:flex lg:justify-center lg:gap-8">
+            {services.slice(3).map((service, index) => (
+              <Card 
+                key={service.title} 
+                className="group hover:shadow-glow transition-all duration-300 hover:-translate-y-2 border-0 shadow-elegant relative overflow-hidden lg:w-80"
+                style={{ animationDelay: `${(index + 3) * 0.1}s` }}
+              >
+                {service.popular && (
+                  <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground z-10">
+                    Most Popular
+                  </Badge>
+                )}
+                
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="p-3 bg-primary-glow rounded-lg group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <service.icon className="h-6 w-6 text-primary group-hover:text-primary-foreground" />
+                    </div>
+                    <Badge variant="outline" className="text-xs">
+                      {service.category}
+                    </Badge>
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                </CardHeader>
+                
+                <CardContent className="pt-0">
+                  <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                    {service.description}
+                  </p>
+                  
+                  {/* Pricing and Duration */}
+                  <div className="flex items-center justify-between mb-4 p-3 bg-muted/50 rounded-lg">
+                    <div className="flex items-center text-sm">
+                      <DollarSign className="h-4 w-4 text-primary mr-1" />
+                      <span className="font-semibold text-foreground">{service.pricing}</span>
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Clock className="h-4 w-4 mr-1" />
+                      <span>{service.duration}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Features List */}
+                  <div className="space-y-2 mb-6">
+                    {service.features.slice(0, 4).map((feature, idx) => (
+                      <div key={idx} className="flex items-center text-sm text-muted-foreground">
+                        <CheckCircle className="w-4 h-4 text-success mr-2 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                    {service.features.length > 4 && (
+                      <div className="text-xs text-primary font-medium">
+                        +{service.features.length - 4} more included
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Action Button */}
+                  <Button 
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" 
+                    variant="outline"
+                    onClick={() => window.location.href = '/booking'}
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Get Quote
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
         
         {/* Call to Action Section */}
