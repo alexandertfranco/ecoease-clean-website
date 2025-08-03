@@ -37,10 +37,10 @@ const Index = () => {
       {showBackToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 left-8 z-40 w-12 h-12 rounded-full shadow-lg animate-fade-in hover:scale-110 transition-transform"
+          className="fixed bottom-4 sm:bottom-8 left-4 sm:left-8 z-40 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg animate-fade-in hover:scale-110 transition-transform"
           size="icon"
         >
-          <ArrowUp className="h-5 w-5" />
+          <ArrowUp className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
       )}
     </div>
