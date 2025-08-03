@@ -184,11 +184,39 @@ const Booking = () => {
   const selectedService = serviceTypes.find(s => s.id === booking.serviceType);
   const basePrice = selectedService?.price || 0;
   const roomMultiplier = (booking.bedrooms * 20) + (booking.bathrooms * 15);
+  
+  // Square footage pricing multiplier
+  const getSquareFootageMultiplier = (squareFootage: string) => {
+    const sqftNumber = parseInt(squareFootage.split('-')[0]) || 0;
+    if (sqftNumber >= 10000) return 150;
+    if (sqftNumber >= 5000) return 100;
+    if (sqftNumber >= 3000) return 75;
+    if (sqftNumber >= 2000) return 50;
+    if (sqftNumber >= 1500) return 25;
+    if (sqftNumber >= 1000) return 15;
+    return 0;
+  };
+  
+  const squareFootagePrice = getSquareFootageMultiplier(booking.squareFootage);
   const addOnPrice = booking.addOns.reduce((total, addOnId) => {
     const addOn = addOnOptions.find(a => a.id === addOnId);
     return total + (addOn?.price || 0);
   }, 0);
-  const totalPrice = basePrice + roomMultiplier + addOnPrice;
+  
+  // Apply frequency discounts
+  const getFrequencyDiscount = (frequency: string) => {
+    switch (frequency) {
+      case 'weekly': return 0.20; // 20% discount
+      case 'bi-weekly': return 0.15; // 15% discount  
+      case 'monthly': return 0.10; // 10% discount
+      default: return 0;
+    }
+  };
+  
+  const frequencyDiscount = getFrequencyDiscount(booking.frequency);
+  const subtotal = basePrice + roomMultiplier + squareFootagePrice + addOnPrice;
+  const discountAmount = subtotal * frequencyDiscount;
+  const totalPrice = subtotal - discountAmount;
 
   const nextStep = () => {
     if (step < totalSteps) {
@@ -236,7 +264,7 @@ const Booking = () => {
         zip_code: booking.zipCode,
         frequency: booking.frequency,
         add_ons: booking.addOns,
-        total_price: paymentType === 'reserve' ? 25 : totalPrice,
+        total_price: paymentType === 'reserve' ? 25 : Math.round(totalPrice),
         payment_type: paymentType,
         status: 'pending'
       };
@@ -387,28 +415,28 @@ const Booking = () => {
             {/* Square Footage */}
             <div>
               <Label className="text-base font-semibold mb-3 block">Square Footage of Your Home</Label>
-              <div className="flex flex-wrap gap-2">
+               <div className="flex flex-wrap gap-2">
                 {[
                   "0-999",
-                  "1000-1499", 
-                  "1500-1999",
-                  "2000-2499",
-                  "2500-2999",
-                  "3000-3499",
-                  "3500-3999",
-                  "4000-4499",
-                  "4500-4999",
-                  "5000-5499",
-                  "5500-5999",
-                  "6000-6499",
-                  "6500-6999",
-                  "7000-7499",
-                  "7500-7999",
-                  "8000-8499",
-                  "8500-8999",
-                  "9000-9499",
-                  "9500-9999",
-                  "10000+"
+                  "1,000-1,499", 
+                  "1,500-1,999",
+                  "2,000-2,499",
+                  "2,500-2,999",
+                  "3,000-3,499",
+                  "3,500-3,999",
+                  "4,000-4,499",
+                  "4,500-4,999",
+                  "5,000-5,499",
+                  "5,500-5,999",
+                  "6,000-6,499",
+                  "6,500-6,999",
+                  "7,000-7,499",
+                  "7,500-7,999",
+                  "8,000-8,499",
+                  "8,500-8,999",
+                  "9,000-9,499",
+                  "9,500-9,999",
+                  "10,000+"
                 ].map(range => (
                   <Badge
                     key={range}
@@ -713,9 +741,41 @@ const Booking = () => {
                     })}
                   </div>
                 )}
-                <div className="flex justify-between border-t pt-4 font-semibold">
-                  <span>Total:</span>
-                  <span>${totalPrice}</span>
+                <div className="border-t pt-4">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>Base Service:</span>
+                      <span>${basePrice}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Room Factor:</span>
+                      <span>+${roomMultiplier}</span>
+                    </div>
+                    {squareFootagePrice > 0 && (
+                      <div className="flex justify-between">
+                        <span>Square Footage:</span>
+                        <span>+${squareFootagePrice}</span>
+                      </div>
+                    )}
+                    {addOnPrice > 0 && (
+                      <div className="flex justify-between">
+                        <span>Add-ons:</span>
+                        <span>+${addOnPrice}</span>
+                      </div>
+                    )}
+                    {frequencyDiscount > 0 && (
+                      <div className="flex justify-between text-green-600">
+                        <span>Frequency Discount ({Math.round(frequencyDiscount * 100)}%):</span>
+                        <span>-${Math.round(discountAmount)}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="border-t mt-2 pt-2 font-semibold">
+                    <div className="flex justify-between">
+                      <span>Total:</span>
+                      <span>${Math.round(totalPrice)}</span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -763,15 +823,15 @@ const Booking = () => {
                     </div>
                   </div>
 
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="w-full justify-center"
-                    onClick={() => handlePayment('full')}
-                  >
-                    <CreditCard className="w-4 h-4 mr-2" />
-                    Pay Full Amount (${totalPrice})
-                  </Button>
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="w-full justify-center"
+                      onClick={() => handlePayment('full')}
+                    >
+                      <CreditCard className="w-4 h-4 mr-2" />
+                      Pay Full Amount (${Math.round(totalPrice)})
+                    </Button>
                 </div>
 
                 <div className="text-xs text-muted-foreground space-y-1">
@@ -903,9 +963,39 @@ const Booking = () => {
                   </div>
                   
                   <div className="border-t pt-4">
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold">Estimated Total:</span>
-                      <span className="text-lg font-bold text-primary">${totalPrice}</span>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span>Base Service:</span>
+                        <span>${basePrice}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Room Factor:</span>
+                        <span>+${roomMultiplier}</span>
+                      </div>
+                      {squareFootagePrice > 0 && (
+                        <div className="flex justify-between">
+                          <span>Square Footage:</span>
+                          <span>+${squareFootagePrice}</span>
+                        </div>
+                      )}
+                      {addOnPrice > 0 && (
+                        <div className="flex justify-between">
+                          <span>Add-ons:</span>
+                          <span>+${addOnPrice}</span>
+                        </div>
+                      )}
+                      {frequencyDiscount > 0 && (
+                        <div className="flex justify-between text-green-600">
+                          <span>Frequency Discount:</span>
+                          <span>-${Math.round(discountAmount)}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="border-t mt-2 pt-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold">Estimated Total:</span>
+                        <span className="text-lg font-bold text-primary">${Math.round(totalPrice)}</span>
+                      </div>
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
                       Final price confirmed after consultation
