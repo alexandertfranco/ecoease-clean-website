@@ -11,14 +11,14 @@ const Hero = () => {
       <div className="absolute bottom-10 sm:bottom-20 left-4 sm:left-20 w-24 h-24 sm:w-48 sm:h-48 bg-success-light rounded-full blur-2xl opacity-20" />
       
       {/* Logo positioned below header - mobile responsive */}
-      <div className="absolute top-16 sm:top-20 left-4 sm:left-8 flex items-center z-20">
-        <Sparkles className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-primary mr-2 sm:mr-4" />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground">
+      <div className="absolute top-16 sm:top-20 left-4 sm:left-8 flex items-center z-20 max-w-[calc(100%-2rem)] sm:max-w-none">
+        <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 text-primary mr-2 sm:mr-4 flex-shrink-0" />
+        <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-foreground leading-tight">
           EcoEase <span className="text-primary">Cleaning</span>
         </h1>
       </div>
       
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-16 sm:pt-20">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 sm:pt-28 md:pt-32 lg:pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px] sm:min-h-[600px]">
           {/* Left side - Content */}
           <div className="text-left animate-fade-in order-2 lg:order-1">
