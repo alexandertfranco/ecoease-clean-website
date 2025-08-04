@@ -747,10 +747,6 @@ const Booking = () => {
                       <span>Base Service:</span>
                       <span>${basePrice}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span>Room Factor:</span>
-                      <span>+${roomMultiplier}</span>
-                    </div>
                     {squareFootagePrice > 0 && (
                       <div className="flex justify-between">
                         <span>Square Footage:</span>
@@ -967,10 +963,6 @@ const Booking = () => {
                       <div className="flex justify-between">
                         <span>Base Service:</span>
                         <span>${basePrice}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Room Factor:</span>
-                        <span>+${roomMultiplier}</span>
                       </div>
                       {squareFootagePrice > 0 && (
                         <div className="flex justify-between">
